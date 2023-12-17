@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/style.css')}}"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+    </style>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="hero">
+      <div class="form-box">
+        <div class="button-box">
+          <div id="btn"></div>
+          <button type="button" class="toggle-btn" onclick="login()">
+            Login
+          </button>
+          <button type="button" class="toggle-btn" onclick="register()">
+            Register
+          </button>
+        </div>
+        <form
+          id="login"
+          class="input-group"
+          method="post"
+          action="/login_validation"
+        >
+          <input
+            type="text"
+            class="input-field"
+            placeholder="Username or Email"
+            name="username"
+            required
+          />
+          <input
+            type="text"
+            class="input-field"
+            placeholder="Password"
+            name="pass1"
+            required
+          />
+          <input type="checkbox" class="check-box" /><span
+            >Remember Password</span
+          >
+          <button type="submit" class="submit-btn">Log In</button>
+        </form>
+
+        <form
+          id="register"
+          method="post"
+          action="/add_user"
+          class="input-group"
+        >
+          <input
+            type="text"
+            class="input-field"
+            name="username"
+            placeholder="Username"
+            required
+          />
+          <input type="text" class="input-field" 
+          name="email"
+          placeholder="Email" required />
+          <input
+            type="text"
+            class="input-field"
+            name="pass2"
+            placeholder="Password"
+            required
+          />
+          <input
+            type="text"
+            class="input-field"
+            name="cpass2"
+            placeholder="Confirm Password"
+            required
+          />
+          <input type="checkbox" class="check-box" /><span
+            >I agree to the terms and condition</span
+          >
+          <button type="submit" class="submit-btn">Sign Up</button>
+        </form>
+      </div>
+    </div>
+    <script src="static/css/main.js"></script>
+  </body>
+</html>
