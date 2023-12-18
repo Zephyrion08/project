@@ -12,7 +12,11 @@ cursor = conn.cursor()
 
 @app.route('/')
 def login():  # put application's code here
-    return render_template('login.html')
+    if 'user_id' in session:        
+        return render_template('index.html')
+    else:
+
+        return render_template('login.html')
 
 @app.route('/home')
 def home():
