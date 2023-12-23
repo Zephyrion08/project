@@ -2,8 +2,11 @@ from flask import Flask, render_template, request,redirect,session
 import mysql.connector
 import os
 
+
 app = Flask(__name__)
 app.secret_key=os.urandom(24)
+
+
 
 conn=mysql.connector.connect(host="localhost",user="root",password="",database="database")
 cursor = conn.cursor()
