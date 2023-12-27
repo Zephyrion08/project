@@ -33,7 +33,7 @@
         <li><a href="#newsletter">Newsletter</a></li>
       </ul>
       {% if 'username' in session %}
-      <li><a href="#">{{ session['username'] }}</a></li>
+      <li><a href="/profile">{{ session['username'] }}</a></li>
       <a href="/logout" class="btn">Log Out</a>
       {% else %}
       <a href="/logout" class="btn">Log Out</a>

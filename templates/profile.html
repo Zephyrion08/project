@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <!-- Include your CSS stylesheets and other necessary resources -->
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/profile.css')}}"
+    />
+  </head>
+  <body>
+    <!-- Navbar (You may customize this based on your existing navbar) -->
+    <nav class="navbar">
+      <div class="container">
+        <a class="navbar-brand" href="/">Home</a>
+        <a class="navbar-brand" href="/profile">Profile</a>
+        <!-- Add other navbar items as needed -->
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+      <h2>User Profile</h2>
+
+      <!-- Display the watchlist -->
+      <h3>My Watchlist</h3>
+      <ul>
+        {% for movie in watchlist %}
+        <li>{{ movie.title }} - {{ movie.year }}</li>
+        {% endfor %}
+      </ul>
+
+      <!-- Add other profile information or features as needed -->
+    </div>
+
+    <!-- Include your JavaScript files at the end if needed -->
+  </body>
+</html>
