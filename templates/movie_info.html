@@ -37,11 +37,7 @@
       <h2 class="heading">{{ movies['title'] }} - Movie Information</h2>
 
       {% if movies %}
-       <img
-        src="{{ url_for('static', filename='img/' ~ movies['poster_path']) }}"
-        alt="{{ movies['title'] }} Poster"
-        class="movie-poster"
-    />
+      <img src="{{ 'https://www.themoviedb.org/t/p/w300' + movies['poster_path'] }}" alt="" class="movie-poster" />
         <p><strong>Release Date:</strong> {{ movies['release_date'] }}</p>
         <p>
           <strong>Genres:</strong> {% for genre_id in movies['genre_ids'] %}{{

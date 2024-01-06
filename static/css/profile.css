@@ -1,7 +1,21 @@
-body {
-  font-family: "Arial", sans-serif;
+* {
+  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  scroll-padding-top: 2rem;
+  scroll-behavior: smooth;
+}
+:root {
+  --main-color: #ff2c1f;
+  --text-color: #020307;
+  --bg-color: #fff;
+}
+body {
+  background: var(--text-color);
+  color: var(--bg-color);
 }
 
 .container {
@@ -34,4 +48,12 @@ li {
   margin-bottom: 10px;
 }
 
-/* Add more styles as needed for other elements on your profile page */
+/* Additional styles for other elements on your profile page */
+
+/* For example, if you have a class for profile images */
+.profile-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%;
+  /* Add more styles as needed */
+}
