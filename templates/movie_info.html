@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% if movies %}{{ movies['Title'] }} - Movie Information{% else %}Movie
+      Information{% endif %}
+    </title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/movie_info.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+    />
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+    />
+
+    <!-- Add any additional styles or scripts here -->
+  </head>
+  <body>
+    <!-- Header (You can reuse your existing header if applicable) -->
+    <header>
+      <a href="#home" class="logo"> <i class="bx bxs-movie"></i>ZenMovies </a>
+      <!-- Add your navigation links or buttons as needed -->
+    </header>
+
+    <!-- Movie Information Section -->
+    <section class="movie-info-container">
+      <h2 class="heading">{{ movies['title'] }} - Movie Information</h2>
+
+      {% if movies %}
+       <img
+        src="{{ url_for('static', filename='img/' ~ movies['poster_path']) }}"
+        alt="{{ movies['title'] }} Poster"
+        class="movie-poster"
+    />
+        <p><strong>Release Date:</strong> {{ movies['release_date'] }}</p>
+        <p>
+          <strong>Genres:</strong> {% for genre_id in movies['genre_ids'] %}{{
+          genre_mapping[genre_id] }}{% if not loop.last %}, {% endif %}{% endfor
+          %}
+        </p>
+        <p><strong>Overview:</strong> {{ movies['overview'] }}</p>
+        <!-- Add more details as needed -->
+      </div>
+      {% else %}
+      <p>No information available for this movie.</p>
+      {% endif %}
+
+      <!-- Back to Movies Button -->
+      <button class="btn" onclick="window.location.href='/';">
+        Back to Movies
+      </button>
+    </section>
+
+    <!-- Footer (You can reuse your existing footer if applicable) -->
+    <section class="footer">
+      <a href="" class="logo"> <i class="bx bxs-movie"></i>Sanamio </a>
+      <div class="social">
+        <a href=""><i class="bx bxl-facebook"></i></a>
+        <a href=""><i class="bx bxl-twitter"></i></a>
+        <a href=""><i class="bx bxl-instagram"></i></a>
+      </div>
+    </section>
+
+    <!-- Copyright (You can reuse your existing copyright section if applicable) -->
+    <div class="copyright">
+      <p>&#169; ZenMovies All Right Reserved</p>
+    </div>
+
+    <!-- Add any additional scripts here -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  </body>
+</html>

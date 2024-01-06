@@ -65,3 +65,13 @@ var swiper = new Swiper(".coming-container", {
     },
   },
 });
+
+function showMoreInfo(movieTitle) {
+  // Replace this with your code to show more information about the movie
+  alert("More info for " + movieTitle);
+}
+
+function addToWatchlist(movieTitle) {
+  // Replace this with your code to add the movie to the watchlist
+  alert("Added " + movieTitle + " to Watchlist");
+}

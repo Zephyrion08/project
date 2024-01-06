@@ -1,5 +1,5 @@
 from MySQLdb import IntegrityError
-from flask import Flask, render_template, request, redirect, session,flash
+from flask import Flask, abort, render_template, request, redirect, session,flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
@@ -7,6 +7,8 @@ import os
 import re
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import request, redirect, session
+import requests
+from urllib.parse import quote
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -32,10 +34,12 @@ def login():
 
 @app.route('/home')
 def home():
+    print(session)  # Print session information for debugging
     if 'user_id' in session:
         return render_template('index.html')
     else:
         return redirect('/')
+
 @app.route('/profile')
 def profile():
     if 'user_id' in session:
@@ -110,6 +114,35 @@ def add_user():
         flash('Username or email already exists', 'error')
         return redirect('/')
 
+
+@app.route('/movie_info/<movie_title>')
+def movie_info(movie_title):
+
+    TMDB_API_KEY = '9908d5c57aa75311ed218356b6ed4058'
+    # Make a request to TMDb API to search for the movie
+    search_url = f'https://api.themoviedb.org/3/search/movie'
+    search_params = {'api_key': TMDB_API_KEY, 'query': movie_title}
+
+    search_response = requests.get(search_url, params=search_params)
+    search_results = search_response.json()
+
+    # Check if there are search results
+    if search_results['results']:
+        # Get the movie ID of the first result
+        movie_id = search_results['results'][0]['id']
+
+        # Make a request to TMDb API to get detailed information about the movie
+        movie_url = f'https://api.themoviedb.org/3/movie/{movie_id}'
+        movie_params = {'api_key': TMDB_API_KEY}
+
+        movie_response = requests.get(movie_url, params=movie_params)
+        movie_data = movie_response.json()
+
+        # Render the template with the movie data
+        return render_template('movie_info.html', movies=movie_data)
+    else:
+        # If no search results, handle the error (movie not found)
+        abort(404)
 
 @app.route('/logout')
 def logout():
