@@ -30,9 +30,10 @@ window.onscroll = () => {
   navbar.classList.remove("active");
 };
 
-var swiper = new Swiper(".home", {
+var swiper = new Swiper("#slider", {
   spaceBetween: 30,
   centeredSlides: true,
+  loop: true,
   autoplay: {
     delay: 4000,
     disableOnInteraction: false,
@@ -42,7 +43,7 @@ var swiper = new Swiper(".home", {
     clickable: true,
   },
 });
-var swiper = new Swiper(".coming-container", {
+var swiper = new swiper(".coming-container", {
   spaceBetween: 20,
   loop: true,
   centeredSlides: true,

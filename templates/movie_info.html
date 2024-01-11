@@ -34,19 +34,25 @@
 
     <!-- Movie Information Section -->
     <section class="movie-info-container">
-      <h2 class="heading">{{ movies['title'] }} - Movie Information</h2>
+      <h2 class="heading">
+        {% if movies %}{{ movies['title'] }} - Movie Information{% else %}Movie
+        Information{% endif %}
+      </h2>
 
       {% if movies %}
-      <img src="{{ 'https://www.themoviedb.org/t/p/w300' + movies['poster_path'] }}" alt="" class="movie-poster" />
-        <p><strong>Release Date:</strong> {{ movies['release_date'] }}</p>
-        <p>
-          <strong>Genres:</strong> {% for genre_id in movies['genre_ids'] %}{{
-          genre_mapping[genre_id] }}{% if not loop.last %}, {% endif %}{% endfor
-          %}
-        </p>
-        <p><strong>Overview:</strong> {{ movies['overview'] }}</p>
-        <!-- Add more details as needed -->
-      </div>
+      <img
+        src="{{ 'https://www.themoviedb.org/t/p/w300' + movies['poster_path'] }}"
+        alt=""
+        class="movie-poster"
+      />
+      <p><strong>Release Date:</strong> {{ movies['release_date'] }}</p>
+      <p>
+        <strong>Genres:</strong> {% for genre_id in movies['genre_ids'] %} {{
+        genre_mapping[genre_id] }}{% if not loop.last %}, {% endif %}{% endfor
+        %}
+      </p>
+      <p><strong>Overview:</strong> {{ movies['overview'] }}</p>
+      <!-- Add more details as needed -->
       {% else %}
       <p>No information available for this movie.</p>
       {% endif %}
