@@ -92,15 +92,18 @@ def is_valid_password(password):
         return False
     return True
 @app.route('/add_user', methods=['POST'])
-
-
 def add_user():
     username = request.form.get('username')
     email = request.form.get('email')
     password = request.form.get('pass2')
     cpassword = request.form.get('cpass2')
 
- 
+    # Check if username or email already exists
+    existing_user = User.query.filter((User.username == username) | (User.email == email)).first()
+    if existing_user:
+        flash('Username or email already exists', 'error')
+        return redirect('/')
+
     if not is_valid_password(password):
         flash('Password must be at least 8 characters long and include uppercase, lowercase, digit, and special character.', 'error')
         return redirect('/')
@@ -109,19 +112,18 @@ def add_user():
         flash('Passwords do not match', 'error')
         return redirect('/')
 
-
     hashed_password = generate_password_hash(password)
 
     new_user = User(username=username, email=email, password=hashed_password, cpassword=cpassword)
-    db.session.add(new_user)
-
+    
     try:
+        db.session.add(new_user)
         db.session.commit()
         session['user_id'] = new_user.user_id
         return redirect('/home')
     except IntegrityError:
         db.session.rollback()
-        flash('Username or email already exists', 'error')
+        flash('Error adding user to the database', 'error')
         return redirect('/')
 
 
