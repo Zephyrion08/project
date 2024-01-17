@@ -49,10 +49,11 @@ body {
   display: inline-block;
   text-decoration: none;
   margin-top: 1rem;
+  cursor: pointer;
 }
 
 .btn:hover {
-  background: #fa1216;
+  background: var(--text-color);
 }
 
 .footer {
@@ -85,4 +86,36 @@ body {
   padding: 20px;
   text-align: center;
   color: var(--bg-color);
+}
+.logo {
+  font-size: 1.1rem;
+  font-weight: 600;
+  align-items: center;
+  color: var(--bg-color);
+  display: flex;
+  column-gap: 0.5rem;
+}
+.bx {
+  color: var(--main-color);
+}
+header.shadow {
+  background: var(--bg-color);
+  box-shadow: 0 0 4px rgb(14 55 54/15%);
+}
+header.shadow .navbar a {
+  color: var(--text-color);
+}
+header.shadow .logo {
+  color: var(--text-color);
+}
+a {
+  outline: none;
+  -moz-outline: none;
+  color: #aaa;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ff2c1f;
+  text-decoration: none;
 }

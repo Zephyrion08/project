@@ -1,454 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie Website</title>
+    <title>
+      Watch Anime Online, Free Anime Streaming Online on Aniwatch.to Anime
+      Website
+    </title>
     <link
       rel="stylesheet"
-      href="{{url_for('static', filename='css/style.css')}}"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
     />
-    <!-- Link Swiper's CSS -->
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+      href="{{url_for('static', filename='css/index.css')}}"
     />
   </head>
   <body>
-    <!-- Navbar  -->
-    <header>
-      <a href="#home" class="logo"> <i class="bx bxs-movie"></i>ZenMovies </a>
-      <div class="bx bx-menu" id="menu-icon"></div>
+    <div id="xwrapper">
+      <!--Begin: Header-->
+      <div id="xheader">
+        <div class="container navbar">
+          <div id="xheader_menu">
+            <ul class="nav header_menu-list">
+              <li class="nav-item">
+                <a href="/home" title="Home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="/home#movies" title="Movies">Movies</a>
+              </li>
+              <li class="nav-item">
+                <a href="/home" title="TV Series">TV Series</a>
+              </li>
+              <li class="nav-item">
+                <a href="/home" title="Most Popular">Most Popular</a>
+              </li>
+              <li class="nav-item">
+                <a href="/home" title="Top Airing">Top Airing</a>
+              </li>
+              <li class="nav-item logout-item">
+                <a href="/logout" title="Logout">Logout</a>
+              </li>
+            </ul>
+          </div>
+          <!-- <div class="logout">
+            <button>logout</button>
+          </div> -->
+        </div>
+      </div>
 
-      <!-- menu  -->
-      <ul class="navbar">
-        <li><a href="#home" class="home-active">Home</a></li>
-        <li><a href="#movies">Movies</a></li>
-        <li><a href="#coming">Coming</a></li>
-        <li><a href="#newsletter">Newsletter</a></li>
-
-        <!-- Conditional display for user authentication -->
-        {% if 'username' in session %}
-        <li><a href="/profile">{{ session['username'] }}</a></li>
-        <li><a href="/logout" class="btn">Log Out</a></li>
-        {% else %}
-        <li><a href="/logout" class="btn">Log Out</a></li>
-        {% endif %}
-      </ul>
-    </header>
-
-    <!-- Home  -->
-    <div class="deslide-wrap">
-      <div class="container">
-        <div id="slider">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="deslide-item">
-                <div class="deslide-cover">
-                  <div class="deslide-cover-img">
-                    <img
-                      class="film-poster-img lazyload"
-                      data-src="static/img/home1.jpeg"
-                      alt="Society of the Snow"
+      <!--End: Header-->
+      <!--Begin: Main-->
+      <div id="xmain-wrapper">
+        <div id="mw-top">
+          <div class="container">
+            <div class="mwt-content">
+              <div class="mwt-icon">
+                <img src="static/img/anw-min.webp" alt="" />
+              </div>
+              <div class="mwh-logo">
+                <a href="" class="mwh-logo-div">
+                  <img src="static/img/logo.png" alt="" />
+                </a>
+                <div class="clearfix"></div>
+              </div>
+              <div id="xsearch" class="home-search">
+                <div class="search-content">
+                  <form action="" autocomplete="off" id="search-form">
+                    <div class="search-submit">
+                      <div class="search-icon btn-search">
+                        <i class="fa fa-search"></i>
+                      </div>
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control search-input"
+                      name="keyword"
+                      placeholder="Search anime..."
+                      required
                     />
-                  </div>
+                  </form>
                 </div>
-                <div class="deslide-item-content">
-                  <div class="desi-sub-text">#1 Spotlight</div>
-                  <div
-                    class="desi-head-title dynamic-name"
-                    data-jname="Society of the Snow"
-                  >
-                    Society of the Snow
-                  </div>
-                  <div class="sc-detail">
-                    <div class="scd-item">
-                      <i class="fas fa-play-circle mr-1"></i>TV
-                    </div>
-                    <div class="scd-item">
-                      <i class="fas fa-clock mr-1"></i>2h 24m
-                    </div>
-                    <div class="scd-item m-hide">
-                      <i class="fas fa-calendar mr-1"></i>12/15/2023
-                    </div>
 
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="desi-description">
-                    In 1972, the Uruguayan Air Force flight 571, chartered to
-                    transport a rugby team to Chile, experiences an unexpected
-                    incident and crashes into a glacier in the heart of the
-                    Andes. Of the 45 passengers on board, only 16 manage to
-                    survive. Trapped in one of the most inaccessible and hostile
-                    environments on the planet, they are forced to take extreme
-                    measures to stay alive. Their survival will depend on the
-                    decisions they make in the midst of this desperate
-                    situation.
-                  </div>
-                  <div class="desi-buttons">
-                    <a
-                      href="/movie_info/Society of the Snow"
-                      class="btn btn-primary btn-radius mr-2"
-                      ><i class="fas fa-play-circle mr-2"></i>Watch Now</a
-                    >
-                    <a
-                      href="/movie_info/Society of the Snow"
-                      class="btn btn-secondary btn-radius"
-                      >Detail<i class="fas fa-angle-right ml-2"></i
-                    ></a>
-                  </div>
-                </div>
                 <div class="clearfix"></div>
               </div>
             </div>
-
-            <div class="swiper-slide">
-              <div class="deslide-item">
-                <div class="deslide-cover">
-                  <div class="deslide-cover-img">
-                    <img
-                      class="film-poster-img lazyload"
-                      data-src="static/img/home2.jpg"
-                      alt="Oppenheimer"
-                    />
-                  </div>
-                </div>
-                <div class="deslide-item-content">
-                  <div class="desi-sub-text">#2 Spotlight</div>
-                  <div
-                    class="desi-head-title dynamic-name"
-                    data-jname="Oppenheimer"
-                  >
-                    Oppenheimer
-                  </div>
-                  <div class="sc-detail">
-                    <div class="scd-item">
-                      <i class="fas fa-play-circle mr-1"></i>TV
-                    </div>
-                    <div class="scd-item">
-                      <i class="fas fa-clock mr-1"></i>24m
-                    </div>
-                    <div class="scd-item m-hide">
-                      <i class="fas fa-calendar mr-1"></i>Oct 22, 2023
-                    </div>
-
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="desi-description">
-                    In 1926, 22-year-old doctoral student J. Robert Oppenheimer
-                    grapples with anxiety and homesickness while studying under
-                    experimental physicist Patrick Blackett at the Cavendish
-                    Laboratory in the University of Cambridge. Upset with the
-                    demanding Blackett, Oppenheimer leaves him a poisoned apple
-                    but later retrieves it. Visiting scientist Niels Bohr
-                    recommends that Oppenheimer instead study theoretical
-                    physics at the University of Göttingen.
-                  </div>
-                  <div class="desi-buttons">
-                    <a href="#" class="btn btn-primary btn-radius mr-2"
-                      ><i class="fas fa-play-circle mr-2"></i>Watch Now</a
-                    >
-                    <a
-                      href="/movie_info/Oppenheimer"
-                      class="btn btn-secondary btn-radius"
-                      >Detail<i class="fas fa-angle-right ml-2"></i
-                    ></a>
-                  </div>
-                </div>
-                <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="mw-body">
+          <div class="container">
+            <div class="mwb-2col">
+              <div class="mwb-left">
+                <h1 class="mw-heading">
+                  AniWatch.to - The best site to watch anime online for Free
+                </h1>
+                <p>
+                  Do you know that according to Google, the monthly search
+                  volume for anime related topics is up to over 1 Billion times?
+                  Anime is famous worldwide and it is no wonder we've seen a
+                  sharp rise in the number of free anime streaming sites.
+                </p>
+                <p>
+                  Just like free online movie streaming sites, anime watching
+                  sites are not created equally, some are better than the rest,
+                  so we've decided to build AniWatch.to to be one of the best
+                  free anime streaming site for all anime fans on the world.
+                </p>
+                <h2>1/ What is AniWatch.to?</h2>
+                <p>
+                  AniWatch.to is a free site to watch anime and you can even
+                  download subbed or dubbed anime in ultra HD quality without
+                  any registration or payment. By having only one ads in all
+                  kinds, we are trying to make it the safest site for free
+                  anime.
+                </p>
+                <h2>2/ Is AniWatch.to safe?</h2>
+                <p>
+                  Yes we are, we do have only one Ads to cover the server cost
+                  and we keep scanning the ads 24/7 to make sure all are clean,
+                  If you find any ads that is suspicious, please forward us the
+                  info and we will remove it.
+                </p>
+                <h2>
+                  3/ So what make AniWatch.to the best site to watch anime free
+                  online?
+                </h2>
+                <p>
+                  Before building AniWatch.to, we've checked many other free
+                  anime sites, and learnt from them. We only keep the good
+                  things and remove all the bad things from all the competitors,
+                  to put it in our AniWatch website. Let's see how we're so
+                  confident about being the best site for anime streaming:
+                </p>
+                <ul>
+                  <li>
+                    <strong>Safety:</strong>
+                    We try our best to not having harmful ads on AniWatch.
+                  </li>
+                  <li>
+                    <strong>Content library:</strong>
+                    Our main focus is anime. You can find here popular, classic,
+                    as well as current titles from all genres such as action,
+                    drama, kids, fantasy, horror, mystery, police, romance,
+                    school, comedy, music, game and many more. All these titles
+                    come with English subtitles or are dubbed in many languages.
+                  </li>
+                  <li>
+                    <strong>Quality/Resolution:</strong>
+                    All titles are in excellent resolution, the best quality
+                    possible. AniWatch.to also has a quality setting function to
+                    make sure our users can enjoy streaming no matter how fast
+                    your Internet speed is. You can stream the anime at 360p if
+                    your Internet is being ridiculous, Or if it is good, you can
+                    go with 720p or even 1080p anime.
+                  </li>
+                  <li>
+                    <strong>Streaming experience:</strong>
+                    Compared to other anime streaming sites, the loading speed
+                    at AniWatch.to is faster. Downloading is just as easy as
+                    streaming, you won't have any problem saving the videos to
+                    watch offline later.
+                  </li>
+                  <li>
+                    <strong>Updates:</strong>
+                    We updates new titles as well as fulfill the requests on a
+                    daily basis so be warned, you will never run out of what to
+                    watch on AniWatch.
+                  </li>
+                  <li>
+                    <strong>User interface:</strong>
+                    Our UI and UX makes it easy for anyone, no matter how old
+                    you are, how long have you been on the Internet. Literally,
+                    you can figure out how to navigate our site after a quick
+                    look. If you want to watch a specific title, search for it
+                    via the search box. If you want to look for suggestions, you
+                    can use the site's categories or simply scroll down for new
+                    releases.
+                  </li>
+                  <li>
+                    <strong>Device compatibility:</strong>
+                    AniWatch works alright on both your mobile and desktop.
+                    However, we'd recommend you use your desktop for a smoother
+                    streaming experience.
+                  </li>
+                  <li>
+                    <strong>Customer care:</strong>
+                    We are in active mode 24/7. You can always contact us for
+                    any help, query, or business-related inquiry. On our
+                    previous projects, we were known for our great customer
+                    service as we were quick to fix broken links or upload
+                    requested content.
+                  </li>
+                </ul>
+                <p>
+                  So if you're looking for a trustworthy and safe site for your
+                  Anime streaming, let's give AniWatch.to a try. And if you like
+                  us, please help us to spread the words and do not forget to
+                  bookmark our site.
+                </p>
+                <p>Thank you!</p>
               </div>
             </div>
-
-            <div class="swiper-slide">
-              <div class="deslide-item">
-                <div class="deslide-cover">
-                  <div class="deslide-cover-img">
-                    <img
-                      class="film-poster-img lazyload"
-                      data-src="static/img/home3.jpg"
-                      alt="Your Name"
-                    />
-                  </div>
-                </div>
-                <div class="deslide-item-content">
-                  <div class="desi-sub-text">#3 Spotlight</div>
-                  <div
-                    class="desi-head-title dynamic-name"
-                    data-jname="Your Name"
-                  >
-                    Your Name
-                  </div>
-                  <div class="sc-detail">
-                    <div class="scd-item">
-                      <i class="fas fa-play-circle mr-1"></i>TV
-                    </div>
-                    <div class="scd-item">
-                      <i class="fas fa-clock mr-1"></i>23m
-                    </div>
-                    <div class="scd-item m-hide">
-                      <i class="fas fa-calendar mr-1"></i>Jan 4, 2024
-
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="desi-description">
-                      Mitsuha Miyamizu, a high school girl, yearns to live the
-                      life of a boy in the bustling city of Tokyo—a dream that
-                      stands in stark contrast to her present life in the
-                      countryside. Meanwhile in the city, Taki Tachibana lives a
-                      busy life as a high school student while juggling his
-                      part-time job and hopes for a future in architecture. One
-                      day, Mitsuha awakens in a room that is not her own and
-                      suddenly finds herself living the dream life in Tokyo—but
-                      in Taki's body! Elsewhere, Taki finds himself living
-                      Mitsuha's life in the humble countryside. In pursuit of an
-                      answer to this strange phenomenon, they begin to search
-                      for one another. Kimi no Na wa. revolves around Mitsuha
-                      and Taki's actions, which begin to have a dramatic impact
-                      on each other's lives, weaving them into a fabric held
-                      together by fate and circumstance.
-                    </div>
-                    <div class="desi-buttons">
-                      <a href="#" class="btn btn-primary btn-radius mr-2"
-                        ><i class="fas fa-play-circle mr-2"></i>Watch Now</a
-                      >
-                      <a
-                        href="/movie_info/Your Name"
-                        class="btn btn-secondary btn-radius"
-                        >Detail<i class="fas fa-angle-right ml-2"></i
-                      ></a>
-                    </div>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-pagination"></div>
-            <div class="clearfix"></div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Movies  -->
-    <div class="movies" id="movies">
-      <h2 class="heading">Opening This Week</h2>
-      <!-- Movies container  -->
-      <div class="movies-container">
-        <!-- box-1  -->
-        <div class="box">
-          <div class="box-img">
-            <img src="static/img/m1.jpg" alt="" />
-          </div>
-          <h3>Dr.Strange</h3>
-          <a href="/movie_info/Doctor Strange" class="btn more-info-btn"
-            >More Info</a
-          >
-        </div>
-        <!-- box-2  -->
-        <div class="box">
-          <div class="box-img">
-            <img src="static/img/m2.jpg" alt="" />
-          </div>
-          <h3>Pathaan</h3>
-          <a href="/movie_info/Pathaan" class="btn more-info-btn">More Info</a>
-        </div>
-        <!-- box-3  -->
-        <div class="box">
-          <div class="box-img">
-            <img src="static/img/m3.jpg" alt="" />
-          </div>
-          <h3>Batman vs Superman</h3>
-          <a href="/movie_info/Batman vs Superman" class="btn more-info-btn"
-            >More Info</a
-          >
-        </div>
-        <!-- box-4  -->
-        <div class="box">
-          <div class="box-img">
-            <img src="static/img/m4.jpg" alt="" />
-          </div>
-          <h3>John Wick 2</h3>
-          <a href="/movie_info/John Wick 2" class="btn more-info-btn"
-            >More Info</a
-          >
-        </div>
-        <!-- box-5  -->
-        <div class="box">
-          <div class="box-img">
-            <img src="static/img/m5.jpg" alt="" />
-          </div>
-          <h3>Aquaman</h3>
-          <a href="/movie_info/Aquaman" class="btn more-info-btn">More Info</a>
-        </div>
-        <!-- box-6  -->
-        <div class="box">
-          <div class="box-img">
-            <img src="static/img/m6.jpg" alt="" />
-          </div>
-          <h3>Black Panther</h3>
-          <a href="/movie_info/Black Panther" class="btn more-info-btn"
-            >More Info</a
-          >
-        </div>
-        <!-- box-7  -->
-        <div class="box">
-          <div class="box-img">
-            <img src="static/img/m7.jpg" alt="" />
-          </div>
-          <h3>Uncharted</h3>
-          <a href="/movie_info/Uncharted" class="btn more-info-btn"
-            >More Info</a
-          >
-        </div>
-        <!-- box-8  -->
-        <div class="box">
-          <div class="box-img">
-            <img src="static/img/m8.jpg" alt="" />
-          </div>
-          <h3>Brahmastra</h3>
-          <a href="/movie_info/Brahmastra" class="btn more-info-btn"
-            >More Info</a
-          >
-        </div>
-        <!-- box-9  -->
-        <div class="box">
-          <div class="box-img">
-            <img src="static/img/m9.jpg" alt="" />
-          </div>
-          <h3>Mortal-Engines</h3>
-          <a href="/movie_info/Mortal-Engines" class="btn more-info-btn"
-            >More Info</a
-          >
-        </div>
-        <!-- box-10  -->
-        <div class="box">
-          <div class="box-img">
-            <img src="static/img/m10.jpg" alt="" />
-          </div>
-          <h3>UnderWorld Blood Wars</h3>
-          <a href="/movie_info/UnderWorld Blood Wars" class="btn more-info-btn"
-            >More Info</a
-          >
-        </div>
-      </div>
-    </div>
-
-    <!-- coming  -->
-
-    <div class="comming" id="comming">
-      <h2 class="heading">Comming Soon</h2>
-      <!-- Movies container  -->
-      <div class="comming-container">
-        <!-- box-1  -->
-        <div class="box">
-          <div class="box-img">
-            <img src="static/img/c1.jpg" alt="" />
-          </div>
-          <h3>Ant Man And The Wasp</h3>
-        </div>
-        <!-- box-2  -->
-        <div class="box">
-          <div class="box-img">
-            <img src="static/img/c2.jpg" alt="" />
-          </div>
-          <h3>Flash</h3>
-        </div>
-        <!-- box-3  -->
-        <div class="box">
-          <div class="box-img">
-            <img src="static/img/c3.jpg" alt="" />
-          </div>
-          <h3>Guardians OF Galaxy</h3>
-        </div>
-        <!-- box-4  -->
-        <div class="box">
-          <div class="box-img">
-            <img src="static/img/c4.jpg" alt="" />
-          </div>
-          <h3>Shazam! Fury of the Gods</h3>
-        </div>
-        <!-- box-5  -->
-        <div class="box">
-          <div class="box-img">
-            <img src="static/img/c5.jpg" alt="" />
-          </div>
-          <h3>Aquaman and the Lost Kingdom</h3>
-        </div>
-        <!-- box-6  -->
-        <div class="box">
-          <div class="box-img">
-            <img src="static/img/c6.jpg" alt="" />
-          </div>
-          <h3>John Wick:Chapter 4</h3>
-        </div>
-        <!-- box-7  -->
-        <div class="box">
-          <div class="box-img">
-            <img src="static/img/c7.jpg" alt="" />
-          </div>
-          <h3>Transformer rise of the beast</h3>
-        </div>
-        <!-- box-8  -->
-        <div class="box">
-          <div class="box-img">
-            <img src="static/img/c8.jpg" alt="" />
-          </div>
-          <h3>Mision Impossible</h3>
-        </div>
-        <!-- box-9  -->
-        <div class="box">
-          <div class="box-img">
-            <img src="static/img/c9.png" alt="" />
-          </div>
-          <h3>Deadpool</h3>
-        </div>
-        <!-- box-10  -->
-        <div class="box">
-          <div class="box-img">
-            <img src="static/img/c10.jpg" alt="" />
-          </div>
-          <h3>Dune</h3>
-        </div>
-      </div>
-    </div>
-
-    <!-- Newsletter /\ -->
-    <section class="newsletter" id="newsletter">
-      <h2>Subscribe To Get <br />Newsletter</h2>
-      <form action="">
-        <input type="email" class="email" placeholder="Enter Email" required />
-        <input type="submit" value="Subscribe" class="btn" />
-      </form>
-    </section>
-
-    <!-- footer  -->
-    <section class="footer">
-      <a href="" class="logo"> <i class="bx bxs-movie"></i>ZenMovies </a>
-      <div class="social">
-        <a href=""><i class="bx bxl-facebook"></i></a>
-        <a href=""><i class="bx bxl-twitter"></i></a>
-        <a href=""><i class="bx bxl-instagram"></i></a>
-      </div>
-    </section>
-
-    <!-- Copyright  -->
-    <div class="copyright">
-      <p>&#169; ZenMovies All Right Reserved</p>
-    </div>
-    <!-- https://omdbapi.com/?i=tt3896198&apikey=16c1497e -->
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
-      integrity="sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="static/css/main.js"></script>
   </body>
 </html>

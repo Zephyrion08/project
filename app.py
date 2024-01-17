@@ -5,7 +5,7 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 import os
 import re
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash , safe_str_cmp
 from flask import request, redirect, session
 import requests
 from urllib.parse import quote
@@ -31,14 +31,24 @@ def login():
         return render_template('index.html')
     else:
         return render_template('login.html')
-
-@app.route('/home')
-def home():
+    
+@app.route('/index')
+def index():
     print(session)  # Print session information for debugging
     if 'user_id' in session:
         return render_template('index.html')
     else:
         return redirect('/')
+
+@app.route('/home')
+def home():
+    print(session)  # Print session information for debugging
+    if 'user_id' in session:
+        return render_template('home.html')
+    else:
+        return redirect('/')
+    
+
 
 @app.route('/profile')
 def profile():
@@ -48,7 +58,6 @@ def profile():
         return redirect('/')
 
 @app.route('/login_validation', methods=['POST'])
-
 def login_validation():
     username = request.form.get('username')
     password = request.form.get('pass1')
@@ -60,14 +69,13 @@ def login_validation():
     else:
         user = User.query.filter_by(username=username).first()
 
-    if user and check_password_hash(user.password, password):
+    if user and safe_str_cmp(user.password, password):
         session['user_id'] = user.user_id
         session['username'] = user.username
-        return redirect('/home')
+        return redirect('/index')
     else:
         flash('Invalid username or password', 'error')
         return redirect('/')
-
 
 
 def is_valid_password(password):

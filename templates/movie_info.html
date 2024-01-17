@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      {% if movies %}{{ movies['Title'] }} - Movie Information{% else %}Movie
+      {% if movies %}{{ movies['Title'] }} Movie Information{% else %}Movie
       Information{% endif %}
     </title>
 
@@ -17,19 +17,10 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
     />
-    <!-- Link Swiper's CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
-    />
-
-    <!-- Add any additional styles or scripts here -->
   </head>
   <body>
-    <!-- Header (You can reuse your existing header if applicable) -->
     <header>
-      <a href="#home" class="logo"> <i class="bx bxs-movie"></i>ZenMovies </a>
-      <!-- Add your navigation links or buttons as needed -->
+      <a href="/index" class="logo"> <i class="bx bxs-movie"></i>ZenMovies </a>
     </header>
 
     <!-- Movie Information Section -->
@@ -58,15 +49,18 @@
       <p>No information available for this movie.</p>
       {% endif %}
 
+      <button class="btn watchlist-btn" onclick="addToWatchlist();">
+        Add to Watchlist
+      </button>
       <!-- Back to Movies Button -->
-      <button class="btn" onclick="window.location.href='/';">
+      <button class="btn" onclick="window.location.href='/home';">
         Back to Movies
       </button>
     </section>
 
     <!-- Footer (You can reuse your existing footer if applicable) -->
     <section class="footer">
-      <a href="" class="logo"> <i class="bx bxs-movie"></i>ZenMovies </a>
+      <a href="/index" class="logo"> <i class="bx bxs-movie"></i>ZenMovies </a>
       <div class="social">
         <a href=""><i class="bx bxl-facebook"></i></a>
         <a href=""><i class="bx bxl-twitter"></i></a>
@@ -78,8 +72,10 @@
     <div class="copyright">
       <p>&#169; ZenMovies All Right Reserved</p>
     </div>
-
-    <!-- Add any additional scripts here -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+      function addToWatchlist() {
+        alert("Movie added to Watchlist!");
+      }
+    </script>
   </body>
 </html>

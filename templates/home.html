@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Website</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/style.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+    />
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar  -->
+    <header>
+      <a href="/index" class="logo"> <i class="bx bxs-movie"></i>ZenMovies </a>
+      <div class="bx bx-menu" id="menu-icon"></div>
+
+      <!-- menu  -->
+      <ul class="navbar">
+        <li><a href="#home" class="home-active">Home</a></li>
+        <li><a href="#movies">Movies</a></li>
+        <li><a href="#coming">Coming</a></li>
+        <li><a href="#newsletter">Newsletter</a></li>
+
+        <!-- Conditional display for user authentication -->
+        {% if 'username' in session %}
+        <li><a href="/profile">{{ session['username'] }}</a></li>
+        <li><a href="/logout" class="btn">Log Out</a></li>
+        {% else %}
+        <li><a href="/logout" class="btn">Log Out</a></li>
+        {% endif %}
+      </ul>
+    </header>
+
+    <!-- Home  -->
+    <div class="deslide-wrap">
+      <div class="container">
+        <div id="slider">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="deslide-item">
+                <div class="deslide-cover">
+                  <div class="deslide-cover-img">
+                    <img
+                      class="film-poster-img lazyload"
+                      data-src="static/img/home1.jpeg"
+                      alt="Society of the Snow"
+                    />
+                  </div>
+                </div>
+                <div class="deslide-item-content">
+                  <div class="desi-sub-text">#1 Spotlight</div>
+                  <div
+                    class="desi-head-title dynamic-name"
+                    data-jname="Society of the Snow"
+                  >
+                    Society of the Snow
+                  </div>
+                  <div class="sc-detail">
+                    <div class="scd-item">
+                      <i class="fas fa-play-circle mr-1"></i>TV
+                    </div>
+                    <div class="scd-item">
+                      <i class="fas fa-clock mr-1"></i>2h 24m
+                    </div>
+                    <div class="scd-item m-hide">
+                      <i class="fas fa-calendar mr-1"></i>12/15/2023
+                    </div>
+
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="desi-description">
+                    In 1972, the Uruguayan Air Force flight 571, chartered to
+                    transport a rugby team to Chile, experiences an unexpected
+                    incident and crashes into a glacier in the heart of the
+                    Andes. Of the 45 passengers on board, only 16 manage to
+                    survive. Trapped in one of the most inaccessible and hostile
+                    environments on the planet, they are forced to take extreme
+                    measures to stay alive. Their survival will depend on the
+                    decisions they make in the midst of this desperate
+                    situation.
+                  </div>
+                  <div class="desi-buttons">
+                    <a
+                      href="/movie_info/Society of the Snow"
+                      class="btn btn-primary btn-radius mr-2"
+                      ><i class="fas fa-play-circle mr-2"></i>Watch Now</a
+                    >
+                    <a
+                      href="/movie_info/Society of the Snow"
+                      class="btn btn-secondary btn-radius"
+                      >Detail<i class="fas fa-angle-right ml-2"></i
+                    ></a>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="deslide-item">
+                <div class="deslide-cover">
+                  <div class="deslide-cover-img">
+                    <img
+                      class="film-poster-img lazyload"
+                      data-src="static/img/home2.jpg"
+                      alt="Oppenheimer"
+                    />
+                  </div>
+                </div>
+                <div class="deslide-item-content">
+                  <div class="desi-sub-text">#2 Spotlight</div>
+                  <div
+                    class="desi-head-title dynamic-name"
+                    data-jname="Oppenheimer"
+                  >
+                    Oppenheimer
+                  </div>
+                  <div class="sc-detail">
+                    <div class="scd-item">
+                      <i class="fas fa-play-circle mr-1"></i>TV
+                    </div>
+                    <div class="scd-item">
+                      <i class="fas fa-clock mr-1"></i>24m
+                    </div>
+                    <div class="scd-item m-hide">
+                      <i class="fas fa-calendar mr-1"></i>Oct 22, 2023
+                    </div>
+
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="desi-description">
+                    In 1926, 22-year-old doctoral student J. Robert Oppenheimer
+                    grapples with anxiety and homesickness while studying under
+                    experimental physicist Patrick Blackett at the Cavendish
+                    Laboratory in the University of Cambridge. Upset with the
+                    demanding Blackett, Oppenheimer leaves him a poisoned apple
+                    but later retrieves it. Visiting scientist Niels Bohr
+                    recommends that Oppenheimer instead study theoretical
+                    physics at the University of Göttingen.
+                  </div>
+                  <div class="desi-buttons">
+                    <a href="#" class="btn btn-primary btn-radius mr-2"
+                      ><i class="fas fa-play-circle mr-2"></i>Watch Now</a
+                    >
+                    <a
+                      href="/movie_info/Oppenheimer"
+                      class="btn btn-secondary btn-radius"
+                      >Detail<i class="fas fa-angle-right ml-2"></i
+                    ></a>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="deslide-item">
+                <div class="deslide-cover">
+                  <div class="deslide-cover-img">
+                    <img
+                      class="film-poster-img lazyload"
+                      data-src="static/img/home3.jpg"
+                      alt="Your Name"
+                    />
+                  </div>
+                </div>
+                <div class="deslide-item-content">
+                  <div class="desi-sub-text">#3 Spotlight</div>
+                  <div
+                    class="desi-head-title dynamic-name"
+                    data-jname="Your Name"
+                  >
+                    Your Name
+                  </div>
+                  <div class="sc-detail">
+                    <div class="scd-item">
+                      <i class="fas fa-play-circle mr-1"></i>TV
+                    </div>
+                    <div class="scd-item">
+                      <i class="fas fa-clock mr-1"></i>23m
+                    </div>
+                    <div class="scd-item m-hide">
+                      <i class="fas fa-calendar mr-1"></i>Jan 4, 2024
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="desi-description">
+                      Mitsuha Miyamizu, a high school girl, yearns to live the
+                      life of a boy in the bustling city of Tokyo—a dream that
+                      stands in stark contrast to her present life in the
+                      countryside. Meanwhile in the city, Taki Tachibana lives a
+                      busy life as a high school student while juggling his
+                      part-time job and hopes for a future in architecture. One
+                      day, Mitsuha awakens in a room that is not her own and
+                      suddenly finds herself living the dream life in Tokyo—but
+                      in Taki's body! Elsewhere, Taki finds himself living
+                      Mitsuha's life in the humble countryside. In pursuit of an
+                      answer to this strange phenomenon, they begin to search
+                      for one another. Kimi no Na wa. revolves around Mitsuha
+                      and Taki's actions, which begin to have a dramatic impact
+                      on each other's lives, weaving them into a fabric held
+                      together by fate and circumstance.
+                    </div>
+                    <div class="desi-buttons">
+                      <a href="#" class="btn btn-primary btn-radius mr-2"
+                        ><i class="fas fa-play-circle mr-2"></i>Watch Now</a
+                      >
+                      <a
+                        href="/movie_info/Your Name"
+                        class="btn btn-secondary btn-radius"
+                        >Detail<i class="fas fa-angle-right ml-2"></i
+                      ></a>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Movies  -->
+    <div class="movies" id="movies">
+      <h2 class="heading">Opening This Week</h2>
+      <!-- Movies container  -->
+      <div class="movies-container">
+        <!-- box-1  -->
+        <div class="box">
+          <div class="box-img">
+            <img src="static/img/m1.jpg" alt="" />
+          </div>
+          <h3>Dr.Strange</h3>
+          <a href="/movie_info/Doctor Strange" class="btn more-info-btn"
+            >More Info</a
+          >
+        </div>
+        <!-- box-2  -->
+        <div class="box">
+          <div class="box-img">
+            <img src="static/img/m2.jpg" alt="" />
+          </div>
+          <h3>Pathaan</h3>
+          <a href="/movie_info/Pathaan" class="btn more-info-btn">More Info</a>
+        </div>
+        <!-- box-3  -->
+        <div class="box">
+          <div class="box-img">
+            <img src="static/img/m3.jpg" alt="" />
+          </div>
+          <h3>Batman vs Superman</h3>
+          <a href="/movie_info/Batman vs Superman" class="btn more-info-btn"
+            >More Info</a
+          >
+        </div>
+        <!-- box-4  -->
+        <div class="box">
+          <div class="box-img">
+            <img src="static/img/m4.jpg" alt="" />
+          </div>
+          <h3>John Wick 2</h3>
+          <a href="/movie_info/John Wick 2" class="btn more-info-btn"
+            >More Info</a
+          >
+        </div>
+        <!-- box-5  -->
+        <div class="box">
+          <div class="box-img">
+            <img src="static/img/m5.jpg" alt="" />
+          </div>
+          <h3>Aquaman</h3>
+          <a href="/movie_info/Aquaman" class="btn more-info-btn">More Info</a>
+        </div>
+        <!-- box-6  -->
+        <div class="box">
+          <div class="box-img">
+            <img src="static/img/m6.jpg" alt="" />
+          </div>
+          <h3>Black Panther</h3>
+          <a href="/movie_info/Black Panther" class="btn more-info-btn"
+            >More Info</a
+          >
+        </div>
+        <!-- box-7  -->
+        <div class="box">
+          <div class="box-img">
+            <img src="static/img/m7.jpg" alt="" />
+          </div>
+          <h3>Uncharted</h3>
+          <a href="/movie_info/Uncharted" class="btn more-info-btn"
+            >More Info</a
+          >
+        </div>
+        <!-- box-8  -->
+        <div class="box">
+          <div class="box-img">
+            <img src="static/img/m8.jpg" alt="" />
+          </div>
+          <h3>Brahmastra</h3>
+          <a href="/movie_info/Brahmastra" class="btn more-info-btn"
+            >More Info</a
+          >
+        </div>
+        <!-- box-9  -->
+        <div class="box">
+          <div class="box-img">
+            <img src="static/img/m9.jpg" alt="" />
+          </div>
+          <h3>Mortal-Engines</h3>
+          <a href="/movie_info/Mortal-Engines" class="btn more-info-btn"
+            >More Info</a
+          >
+        </div>
+        <!-- box-10  -->
+        <div class="box">
+          <div class="box-img">
+            <img src="static/img/m10.jpg" alt="" />
+          </div>
+          <h3>UnderWorld Blood Wars</h3>
+          <a href="/movie_info/UnderWorld Blood Wars" class="btn more-info-btn"
+            >More Info</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- coming  -->
+
+    <div class="comming" id="comming">
+      <h2 class="heading">Comming Soon</h2>
+      <!-- Movies container  -->
+      <div class="comming-container">
+        <!-- box-1  -->
+        <div class="box">
+          <div class="box-img">
+            <img src="static/img/c1.jpg" alt="" />
+          </div>
+          <h3>Ant Man And The Wasp</h3>
+        </div>
+        <!-- box-2  -->
+        <div class="box">
+          <div class="box-img">
+            <img src="static/img/c2.jpg" alt="" />
+          </div>
+          <h3>Flash</h3>
+        </div>
+        <!-- box-3  -->
+        <div class="box">
+          <div class="box-img">
+            <img src="static/img/c3.jpg" alt="" />
+          </div>
+          <h3>Guardians OF Galaxy</h3>
+        </div>
+        <!-- box-4  -->
+        <div class="box">
+          <div class="box-img">
+            <img src="static/img/c4.jpg" alt="" />
+          </div>
+          <h3>Shazam! Fury of the Gods</h3>
+        </div>
+        <!-- box-5  -->
+        <div class="box">
+          <div class="box-img">
+            <img src="static/img/c5.jpg" alt="" />
+          </div>
+          <h3>Aquaman and the Lost Kingdom</h3>
+        </div>
+        <!-- box-6  -->
+        <div class="box">
+          <div class="box-img">
+            <img src="static/img/c6.jpg" alt="" />
+          </div>
+          <h3>John Wick:Chapter 4</h3>
+        </div>
+        <!-- box-7  -->
+        <div class="box">
+          <div class="box-img">
+            <img src="static/img/c7.jpg" alt="" />
+          </div>
+          <h3>Transformer rise of the beast</h3>
+        </div>
+        <!-- box-8  -->
+        <div class="box">
+          <div class="box-img">
+            <img src="static/img/c8.jpg" alt="" />
+          </div>
+          <h3>Mision Impossible</h3>
+        </div>
+        <!-- box-9  -->
+        <div class="box">
+          <div class="box-img">
+            <img src="static/img/c9.png" alt="" />
+          </div>
+          <h3>Deadpool</h3>
+        </div>
+        <!-- box-10  -->
+        <div class="box">
+          <div class="box-img">
+            <img src="static/img/c10.jpg" alt="" />
+          </div>
+          <h3>Dune</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Newsletter /\ -->
+    <section class="newsletter" id="newsletter">
+      <h2>Subscribe To Get <br />Newsletter</h2>
+      <form action="">
+        <input type="email" class="email" placeholder="Enter Email" required />
+        <input type="submit" value="Subscribe" class="btn" />
+      </form>
+    </section>
+
+    <!-- footer  -->
+    <section class="footer">
+      <a href="/index" class="logo"> <i class="bx bxs-movie"></i>ZenMovies </a>
+      <div class="social">
+        <a href=""><i class="bx bxl-facebook"></i></a>
+        <a href=""><i class="bx bxl-twitter"></i></a>
+        <a href=""><i class="bx bxl-instagram"></i></a>
+      </div>
+    </section>
+
+    <!-- Copyright  -->
+    <div class="copyright">
+      <p>&#169; ZenMovies All Right Reserved</p>
+    </div>
+    <!-- https://omdbapi.com/?i=tt3896198&apikey=16c1497e -->
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
+      integrity="sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="static/css/main.js"></script>
+  </body>
+</html>
