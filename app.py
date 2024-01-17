@@ -89,9 +89,8 @@ def is_valid_password(password):
     ):
         return False
     return True
+
 @app.route('/add_user', methods=['POST'])
-
-
 def add_user():
     username = request.form.get('username')
     email = request.form.get('email')
