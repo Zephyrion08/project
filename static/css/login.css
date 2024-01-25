@@ -17,7 +17,7 @@
 
 .form-box {
   width: 380px;
-  height: 488px;
+  height: 540px;
   position: relative;
   margin: 11% auto;
   padding: 5px;
@@ -74,6 +74,8 @@
   border-bottom: 1px solid #999;
   outline: none;
   background: transparent;
+  color: white;
+  font-size: 18px;
 }
 
 .submit-btn {
@@ -116,12 +118,9 @@ span {
   border: none;
   outline: none;
   border-radius: 30px;
-  color: #fff;
   font-size: 16px;
   margin-top: 10px;
   transition: background 0.3s ease;
-
-  /* Add positioning */
   position: relative;
   left: 50%;
   transform: translateX(-50%);

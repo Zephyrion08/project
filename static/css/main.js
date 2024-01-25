@@ -76,7 +76,6 @@ function addToWatchlist(movieTitle) {
   // Replace this with your code to add the movie to the watchlist
   alert("Added " + movieTitle + " to Watchlist");
 }
-
 function showPassword(id) {
   var passwordField = document.getElementById(id);
   if (passwordField.type === "password") {
