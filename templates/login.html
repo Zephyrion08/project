@@ -7,7 +7,6 @@
       rel="stylesheet"
       href="{{url_for('static', filename='css/login.css')}}"
     />
-
     <title>Login Page</title>
   </head>
   <body>
@@ -41,6 +40,7 @@
             class="input-field"
             placeholder="Password"
             name="pass1"
+            id="login-password"
             required
             autocomplete="off"
           />
@@ -48,8 +48,14 @@
             >Remember Password</span
           >
           <button type="submit" class="submit-btn">Log In</button>
+          <button
+            type="button"
+            class="show-password-btn"
+            onclick="showPassword('login-password')"
+          >
+            Show Password
+          </button>
         </form>
-
         <form
           id="register"
           method="post"
@@ -73,28 +79,47 @@
             autocomplete="off"
           />
           <input
-            type="Password"
+            type="password"
             class="input-field"
             name="pass2"
             placeholder="Password"
             required
+            id="register-password"
             autocomplete="off"
           />
           <input
-            type="Password"
+            type="password"
             class="input-field"
             name="cpass2"
             placeholder="Confirm Password"
             required
+            id="confirm-password"
             autocomplete="off"
           />
           <input type="checkbox" class="check-box" required /><span
             >I agree to the terms and condition</span
           >
           <button type="submit" class="submit-btn">Sign Up</button>
+          <button
+            type="button"
+            class="show-password-btn"
+            onclick="showPassword('register-password'); showPassword('confirm-password')"
+          >
+            Show Password
+          </button>
         </form>
       </div>
     </div>
     <script src="static/css/main.js"></script>
+    <script>
+      function showPassword(id) {
+        var passwordField = document.getElementById(id);
+        if (passwordField.type === "password") {
+          passwordField.type = "text";
+        } else {
+          passwordField.type = "password";
+        }
+      }
+    </script>
   </body>
 </html>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Your website description" />
     <title>Movie Website</title>
     <link
       rel="stylesheet"
@@ -13,7 +14,6 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
     />
-    <!-- Link Swiper's CSS -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
@@ -338,8 +338,7 @@
       </div>
     </div>
 
-    <!-- coming  -->
-
+    <!-- Coming Soon  -->
     <div class="comming" id="comming">
       <h2 class="heading">Comming Soon</h2>
       <!-- Movies container  -->
@@ -417,7 +416,7 @@
       </div>
     </div>
 
-    <!-- Newsletter /\ -->
+    <!-- Newsletter  -->
     <section class="newsletter" id="newsletter">
       <h2>Subscribe To Get <br />Newsletter</h2>
       <form action="">
@@ -426,13 +425,13 @@
       </form>
     </section>
 
-    <!-- footer  -->
+    <!-- Footer  -->
     <section class="footer">
       <a href="/index" class="logo"> <i class="bx bxs-movie"></i>ZenMovies </a>
       <div class="social">
-        <a href=""><i class="bx bxl-facebook"></i></a>
-        <a href=""><i class="bx bxl-twitter"></i></a>
-        <a href=""><i class="bx bxl-instagram"></i></a>
+        <a href="#"><i class="bx bxl-facebook" aria-label="Facebook"></i></a>
+        <a href="#"><i class="bx bxl-twitter" aria-label="Twitter"></i></a>
+        <a href="#"><i class="bx bxl-instagram" aria-label="Instagram"></i></a>
       </div>
     </section>
 
@@ -440,8 +439,8 @@
     <div class="copyright">
       <p>&#169; ZenMovies All Right Reserved</p>
     </div>
-    <!-- https://omdbapi.com/?i=tt3896198&apikey=16c1497e -->
 
+    <!-- Scripts at the end of the body  -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
@@ -449,6 +448,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script src="static/css/main.js"></script>
+    <script src="{{url_for('static', filename='css/main.js')}}"></script>
   </body>
 </html>

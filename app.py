@@ -1,7 +1,7 @@
 from MySQLdb import IntegrityError
-from flask import Flask, abort, render_template, request, redirect, session,flash
+from flask import Flask, abort, render_template, request, redirect, session,flash , url_for
 from flask_sqlalchemy import SQLAlchemy
-from flask_admin import Admin
+from flask_admin import Admin,AdminIndexView
 from flask_admin.contrib.sqla import ModelView
 import os
 import re
@@ -13,17 +13,35 @@ from urllib.parse import quote
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-admin = Admin(app)
+
 db = SQLAlchemy(app)
+
+
 
 class User(db.Model):
     user_id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), nullable=False, unique=True)
     email = db.Column(db.String(20), nullable=False)
     password = db.Column(db.String(80), nullable=False)
+    cpassword = db.Column(db.String(80), nullable=False)
 
+class CustomModelView(ModelView):
+    def is_accessible(self):
+        
+        return 'user_id' in session and session['user_id'] == 1
 
-admin.add_view(ModelView(User, db.session))
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('login'))
+
+class CustomAdminIndexView(AdminIndexView):
+    def is_accessible(self):
+        return 'user_id' in session and session['user_id'] == 1
+
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('login'))
+
+admin = Admin(app, index_view=CustomAdminIndexView())
+admin.add_view(CustomModelView(User, db.session))
 
 @app.route('/')
 def login():
@@ -34,7 +52,7 @@ def login():
     
 @app.route('/index')
 def index():
-    print(session)  # Print session information for debugging
+    print(session)  
     if 'user_id' in session:
         return render_template('index.html')
     else:
@@ -42,7 +60,7 @@ def index():
 
 @app.route('/home')
 def home():
-    print(session)  # Print session information for debugging
+    print(session)  
     if 'user_id' in session:
         return render_template('home.html')
     else:
