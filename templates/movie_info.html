@@ -54,7 +54,9 @@
         method="POST"
       >
         <input type="hidden" name="movie_title" value="{{ movies.title }}" />
-        <button type="submit">Add to Watchlist</button>
+        <button type="submit" class="btn addToWatchlistBtn">
+          Add to Watchlist
+        </button>
       </form>
       <!-- Back to Movies Button -->
       <button class="btn" onclick="window.location.href='/home';">

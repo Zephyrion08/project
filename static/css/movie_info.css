@@ -119,3 +119,19 @@ a:hover {
   color: #ff2c1f;
   text-decoration: none;
 }
+/* Add to Watchlist Button */
+.addToWatchlistBtn {
+  padding: 0.7rem 1.4rem;
+  background: var(--main-color);
+  color: var(--bg-color);
+  font-weight: 400;
+  border-radius: 0.5rem;
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.addToWatchlistBtn:hover {
+  background: var(--text-color);
+}
