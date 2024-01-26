@@ -58,7 +58,7 @@
 }
 
 .input-group {
-  top: 137px;
+  top: 170px;
   position: absolute;
   width: 280px;
   transition: 0.5s;
@@ -124,4 +124,25 @@ span {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+}
+.password-field {
+  position: relative;
+}
+
+.password-field .toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.cpassword-field {
+  position: relative;
+}
+.cpassword-field .toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
 }

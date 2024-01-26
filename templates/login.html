@@ -7,6 +7,10 @@
       rel="stylesheet"
       href="{{url_for('static', filename='css/login.css')}}"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+    />
     <title>Login Page</title>
   </head>
   <body>
@@ -35,26 +39,25 @@
             required
             autocomplete="off"
           />
-          <input
-            type="password"
-            class="input-field"
-            placeholder="Password"
-            name="pass1"
-            id="login-password"
-            required
-            autocomplete="off"
-          />
+          <div class="password-field">
+            <input
+              type="password"
+              class="input-field"
+              placeholder="Password"
+              name="pass1"
+              id="login-password"
+              required
+              autocomplete="off"
+            />
+            <i
+              class="bx bx-low-vision toggle-password"
+              onclick="togglePasswordVisibility('login-password')"
+            ></i>
+          </div>
           <input type="checkbox" class="check-box" required /><span
             >Remember Password</span
           >
           <button type="submit" class="submit-btn">Log In</button>
-          <button
-            type="button"
-            class="show-password-btn"
-            onclick="showPassword('login-password')"
-          >
-            Show Password
-          </button>
         </form>
         <form
           id="register"
@@ -78,35 +81,40 @@
             required
             autocomplete="off"
           />
-          <input
-            type="password"
-            class="input-field"
-            name="pass2"
-            placeholder="Password"
-            required
-            id="register-password"
-            autocomplete="off"
-          />
-          <input
-            type="password"
-            class="input-field"
-            name="cpass2"
-            placeholder="Confirm Password"
-            required
-            id="confirm-password"
-            autocomplete="off"
-          />
+          <div class="password-field">
+            <input
+              type="password"
+              class="input-field"
+              name="pass2"
+              placeholder="Password"
+              required
+              id="register-password"
+              autocomplete="off"
+            />
+            <i
+              class="bx bx-low-vision toggle-password"
+              onclick="togglePasswordVisibility('register-password')"
+            ></i>
+          </div>
+          <div class="cpassword-field">
+            <input
+              type="password"
+              class="input-field"
+              name="cpass2"
+              placeholder="Confirm Password"
+              required
+              id="confirm-password"
+              autocomplete="off"
+            />
+            <i
+              class="bx bx-low-vision toggle-password"
+              onclick="togglePasswordVisibility('confirm-password')"
+            ></i>
+          </div>
           <input type="checkbox" class="check-box" required /><span
             >I agree to the terms and condition</span
           >
           <button type="submit" class="submit-btn">Sign Up</button>
-          <button
-            type="button"
-            class="show-password-btn"
-            onclick="showPassword('register-password'); showPassword('confirm-password')"
-          >
-            Show Password
-          </button>
         </form>
       </div>
     </div>

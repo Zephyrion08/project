@@ -27,8 +27,8 @@
       <!-- Display the watchlist -->
       <h3>My Watchlist</h3>
       <ul>
-        {% for movie in watchlist %}
-        <li>{{ movie.title }} - {{ movie.year }}</li>
+        {% for item in watchlist %}
+        <li>{{ item.movie_title }}</li>
         {% endfor %}
       </ul>
 

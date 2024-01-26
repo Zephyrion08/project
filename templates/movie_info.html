@@ -49,9 +49,13 @@
       <p>No information available for this movie.</p>
       {% endif %}
 
-      <button class="btn watchlist-btn" onclick="addToWatchlist();">
-        Add to Watchlist
-      </button>
+      <form
+        action="{{ url_for('add_to_watchlist', movie_title=movies.title) }}"
+        method="POST"
+      >
+        <input type="hidden" name="movie_title" value="{{ movies.title }}" />
+        <button type="submit">Add to Watchlist</button>
+      </form>
       <!-- Back to Movies Button -->
       <button class="btn" onclick="window.location.href='/home';">
         Back to Movies

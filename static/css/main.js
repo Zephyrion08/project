@@ -76,11 +76,17 @@ function addToWatchlist(movieTitle) {
   // Replace this with your code to add the movie to the watchlist
   alert("Added " + movieTitle + " to Watchlist");
 }
-function showPassword(id) {
-  var passwordField = document.getElementById(id);
+function togglePasswordVisibility(passwordFieldId) {
+  var passwordField = document.getElementById(passwordFieldId);
+  var eyeIcon = document.getElementById("toggle" + passwordFieldId);
+
   if (passwordField.type === "password") {
     passwordField.type = "text";
+    eyeIcon.classList.remove("bx-low-vision");
+    eyeIcon.classList.add("bx-vision");
   } else {
     passwordField.type = "password";
+    eyeIcon.classList.remove("bx-vision");
+    eyeIcon.classList.add("bx-low-vision");
   }
 }

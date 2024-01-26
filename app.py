@@ -24,6 +24,10 @@ class User(db.Model):
     email = db.Column(db.String(20), nullable=False)
     password = db.Column(db.String(80), nullable=False)
     cpassword = db.Column(db.String(80), nullable=False)
+class WatchlistItem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable=False)
+    movie_title = db.Column(db.String(255), nullable=False)
 
 class CustomModelView(ModelView):
     def is_accessible(self):
@@ -42,6 +46,7 @@ class CustomAdminIndexView(AdminIndexView):
 
 admin = Admin(app, index_view=CustomAdminIndexView())
 admin.add_view(CustomModelView(User, db.session))
+admin.add_view(CustomModelView(WatchlistItem, db.session))
 
 @app.route('/')
 def login():
@@ -70,10 +75,13 @@ def home():
 
 @app.route('/profile')
 def profile():
-    if 'user_id' in session:
-        return render_template('profile.html')
-    else:
-        return redirect('/')
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    user = User.query.get(session['user_id'])
+    watchlist = WatchlistItem.query.filter_by(user_id=session['user_id']).all()
+
+    return render_template('profile.html', user=user, watchlist=watchlist)
 
 @app.route('/login_validation', methods=['POST'])
 
@@ -174,6 +182,23 @@ def movie_info(movie_title):
         # If no search results, handle the error (movie not found)
         abort(404)
 
+@app.route('/add_to_watchlist/<movie_title>', methods=['POST'])
+def add_to_watchlist(movie_title):
+    if 'user_id' not in session:
+        flash('You must be logged in to add movies to your watchlist.', 'error')
+        return redirect(url_for('login'))
+
+    # Check if the movie is already in the user's watchlist
+    existing_watchlist_item = WatchlistItem.query.filter_by(user_id=session['user_id'], movie_title=movie_title).first()
+    if existing_watchlist_item:
+        flash('This movie is already in your watchlist.', 'error')
+    else:
+        new_watchlist_item = WatchlistItem(user_id=session['user_id'], movie_title=movie_title)
+        db.session.add(new_watchlist_item)
+        db.session.commit()
+        flash('Movie added to your watchlist successfully.', 'success')
+
+    return redirect(url_for('profile'))
 @app.route('/logout')
 def logout():
     session.clear()
