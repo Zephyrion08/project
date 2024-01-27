@@ -5,10 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      {% if movies %}{{ movies['Title'] }} Movie Information{% else %}Movie
+      {% if movies %}{{ movies['title'] }} Movie Information{% else %}Movie
       Information{% endif %}
     </title>
-
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/movie_info.css') }}"
@@ -42,18 +41,21 @@
         {% for genre in movies['genres'] %} {{ genre['name'] }}{% if not
         loop.last %}, {% endif %} {% endfor %}
       </p>
-
       <p><strong>Overview:</strong> {{ movies['overview'] }}</p>
+      <p><strong>Duration:</strong> {{ movies['runtime'] }} minutes</p>
+      <!-- Added runtime -->
+      <p><strong>Vote Average:</strong> {{ movies['vote_average'] }} / 10</p>
+      <!-- Added vote average -->
       <!-- Add more details as needed -->
       {% else %}
       <p>No information available for this movie.</p>
       {% endif %}
 
       <form
-        action="{{ url_for('add_to_watchlist', movie_title=movies.title) }}"
+        action="{{ url_for('add_to_watchlist', movie_title=movies['title']) }}"
         method="POST"
       >
-        <input type="hidden" name="movie_title" value="{{ movies.title }}" />
+        <input type="hidden" name="movie_title" value="{{ movies['title'] }}" />
         <button type="submit" class="btn addToWatchlistBtn">
           Add to Watchlist
         </button>

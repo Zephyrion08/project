@@ -1,59 +1,127 @@
+/* style.css */
+
+/* Reset default margin and padding */
 * {
-  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  text-decoration: none;
-  list-style: none;
-  scroll-padding-top: 2rem;
-  scroll-behavior: smooth;
 }
-:root {
-  --main-color: #ff2c1f;
-  --text-color: #020307;
-  --bg-color: #fff;
-}
+
+/* Global styles */
 body {
-  background: var(--text-color);
-  color: var(--bg-color);
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #ffffff;
 }
 
 .container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 20px;
 }
 
-.navbar {
+.header {
   background-color: #333;
-  padding: 10px;
+  color: #fff;
+  padding: 20px;
 }
 
-.navbar a {
-  color: #fff;
-  text-decoration: none;
+.header .logo img {
+  width: 100px;
+  height: auto;
+}
+
+.header .menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.header .menu li {
   margin-right: 20px;
 }
 
-h2,
-h3 {
-  color: #333;
+.header .menu a {
+  color: #fff;
+  text-decoration: none;
 }
 
-ul {
+.content {
+  margin-top: 20px;
+}
+
+.user-profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.user-profile .profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #007bff; /* Default color for profile picture */
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+}
+
+.user-profile .user-details {
+  margin-left: 20px;
+}
+
+.user-profile h2 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.user-profile p {
+  font-size: 14px;
+  color: #888;
+}
+
+.user-stats {
+  display: flex;
+}
+
+.stat {
+  margin-right: 20px;
+}
+
+.watchlist {
+  margin-bottom: 20px;
+}
+
+.watchlist h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.watchlist ul {
   list-style-type: none;
   padding: 0;
 }
 
-li {
-  margin-bottom: 10px;
+.watchlist li {
+  font-size: 16px;
+  display: inline-block;
+  margin-right: 10px;
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
 }
 
-/* Additional styles for other elements on your profile page */
+.watchlist li:last-child {
+  margin-right: 0;
+}
 
-/* For example, if you have a class for profile images */
-.profile-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 50%;
-  /* Add more styles as needed */
+.watchlist li a {
+  color: #333;
+  text-decoration: none;
 }

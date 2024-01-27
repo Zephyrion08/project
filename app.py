@@ -1,3 +1,4 @@
+from datetime import datetime  
 from MySQLdb import IntegrityError
 from flask import Flask, abort, render_template, request, redirect, session,flash , url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -24,6 +25,7 @@ class User(db.Model):
     email = db.Column(db.String(20), nullable=False)
     password = db.Column(db.String(80), nullable=False)
     cpassword = db.Column(db.String(80), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 class WatchlistItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable=False)

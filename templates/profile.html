@@ -3,38 +3,64 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Profile</title>
-    <!-- Include your CSS stylesheets and other necessary resources -->
+    <title>Your Page Title</title>
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='css/profile.css') }}"
+      href="{{url_for('static', filename='css/profile.css')}}"
     />
   </head>
   <body>
-    <!-- Navbar (You may customize this based on your existing navbar) -->
-    <nav class="navbar">
-      <div class="container">
-        <a class="navbar-brand" href="/">Home</a>
-        <a class="navbar-brand" href="/profile">Profile</a>
-        <!-- Add other navbar items as needed -->
-      </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="container mt-5">
-      <h2>User Profile</h2>
-
-      <!-- Display the watchlist -->
-      <h3>My Watchlist</h3>
-      <ul>
-        {% for item in watchlist %}
-        <li>{{ item.movie_title }}</li>
-        {% endfor %}
-      </ul>
-
-      <!-- Add other profile information or features as needed -->
+    <div class="container">
+      <header class="header">
+        <nav class="menu">
+          <ul>
+            <li><a href="#">Watchlist</a></li>
+            <li><a href="#">Stats</a></li>
+            <li><a href="#">Total Edits</a></li>
+            <li><a href="#">Movies</a></li>
+            <li><a href="#">TV Shows</a></li>
+            <li><a href="#">People</a></li>
+            <li><a href="#">More</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main class="content">
+        <section class="user-profile">
+          <div class="user-info">
+            <div class="profile-pic">{{ user.username[0] | upper }}</div>
+            <div class="user-details">
+              <h2>{{ user.username }}</h2>
+              <p>Member since {{ user.created_at.strftime('%B %Y') }}</p>
+            </div>
+          </div>
+          <div class="user-stats">
+            <div class="stat">
+              <h3>{{ movies_count }}</h3>
+              <p>Movies</p>
+            </div>
+            <div class="stat">
+              <h3>0%</h3>
+              <p>Recent Discussions</p>
+            </div>
+            <div class="stat">
+              <h3>{{ ratings_count }}</h3>
+              <p>Total Ratings</p>
+            </div>
+            <div class="stat">
+              <h3>0%</h3>
+              <p>Average Movie Score</p>
+            </div>
+          </div>
+        </section>
+        <section class="watchlist">
+          <h2>Watchlist</h2>
+          <ul>
+            {% for item in watchlist %}
+            <li>{{ item.movie_title }}</li>
+            {% endfor %}
+          </ul>
+        </section>
+      </main>
     </div>
-
-    <!-- Include your JavaScript files at the end if needed -->
   </body>
 </html>
