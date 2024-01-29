@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Page Title</title>
+    <title>User Profile</title>
     <link
       rel="stylesheet"
-      href="{{url_for('static', filename='css/profile.css')}}"
+      href="{{ url_for('static', filename='css/profile.css') }}"
     />
   </head>
   <body>
@@ -54,11 +54,18 @@
         </section>
         <section class="watchlist">
           <h2>Watchlist</h2>
-          <ul>
-            {% for item in watchlist %}
-            <li>{{ item.movie_title }}</li>
-            {% endfor %}
-          </ul>
+          {% for item in watchlist %}
+          <div class="movie-card">
+            <img
+              src="{{ item.movie_poster_url }}"
+              alt="{{ item.movie_title }}"
+            />
+            <div class="movie-info">
+              <div class="movie-title">{{ item.movie_title }}</div>
+              <div class="movie-description">{{ item.movie_description }}</div>
+            </div>
+          </div>
+          {% endfor %}
         </section>
       </main>
     </div>

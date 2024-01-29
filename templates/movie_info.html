@@ -56,6 +56,16 @@
         method="POST"
       >
         <input type="hidden" name="movie_title" value="{{ movies['title'] }}" />
+        <input
+          type="hidden"
+          name="movie_description"
+          value="{{ movies['overview'] }}"
+        />
+        <input
+          type="hidden"
+          name="movie_poster_url"
+          value="https://image.tmdb.org/t/p/w500/{{ movies['poster_path'] }}"
+        />
         <button type="submit" class="btn addToWatchlistBtn">
           Add to Watchlist
         </button>

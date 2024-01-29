@@ -1,23 +1,19 @@
-from datetime import datetime  
-from MySQLdb import IntegrityError
-from flask import Flask, abort, render_template, request, redirect, session,flash , url_for
+from flask import Flask, render_template, request, redirect, session, flash, url_for,abort
 from flask_sqlalchemy import SQLAlchemy
-from flask_admin import Admin,AdminIndexView
+from flask_admin import Admin, AdminIndexView
 from flask_admin.contrib.sqla import ModelView
+from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 import os
 import re
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask import request, redirect, session
 import requests
-from urllib.parse import quote
+from MySQLdb import IntegrityError
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'default_secret_key')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///database.db')
 
 db = SQLAlchemy(app)
-
-
 
 class User(db.Model):
     user_id = db.Column(db.Integer, primary_key=True)
@@ -26,14 +22,16 @@ class User(db.Model):
     password = db.Column(db.String(80), nullable=False)
     cpassword = db.Column(db.String(80), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
 class WatchlistItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable=False)
     movie_title = db.Column(db.String(255), nullable=False)
+    movie_poster_url = db.Column(db.String(255), nullable=False)
+    movie_description = db.Column(db.Text, nullable=False)
 
 class CustomModelView(ModelView):
     def is_accessible(self):
-        
         return 'user_id' in session and session['user_id'] == 1
 
     def inaccessible_callback(self, name, **kwargs):
@@ -56,10 +54,9 @@ def login():
         return render_template('index.html')
     else:
         return render_template('login.html')
-    
+
 @app.route('/index')
 def index():
-    print(session)  
     if 'user_id' in session:
         return render_template('index.html')
     else:
@@ -67,13 +64,10 @@ def index():
 
 @app.route('/home')
 def home():
-    print(session)  
     if 'user_id' in session:
         return render_template('home.html')
     else:
         return redirect('/')
-    
-
 
 @app.route('/profile')
 def profile():
@@ -86,7 +80,6 @@ def profile():
     return render_template('profile.html', user=user, watchlist=watchlist)
 
 @app.route('/login_validation', methods=['POST'])
-
 def login_validation():
     username = request.form.get('username')
     password = request.form.get('pass1')
@@ -106,10 +99,7 @@ def login_validation():
         flash('Invalid username or password', 'error')
         return redirect('/')
 
-
-
 def is_valid_password(password):
-
     if (
         len(password) < 8
         or not re.search(r'[A-Z]', password)
@@ -119,6 +109,7 @@ def is_valid_password(password):
     ):
         return False
     return True
+
 @app.route('/add_user', methods=['POST'])
 def add_user():
     username = request.form.get('username')
@@ -126,7 +117,6 @@ def add_user():
     password = request.form.get('pass2')
     cpassword = request.form.get('cpass2')
 
-    # Check if username or email already exists
     existing_user = User.query.filter((User.username == username) | (User.email == email)).first()
     if existing_user:
         flash('Username or email already exists', 'error')
@@ -154,34 +144,26 @@ def add_user():
         flash('Error adding user to the database', 'error')
         return redirect('/')
 
-
 @app.route('/movie_info/<movie_title>')
 def movie_info(movie_title):
 
     TMDB_API_KEY = '9908d5c57aa75311ed218356b6ed4058'
-    # Make a request to TMDb API to search for the movie
     search_url = f'https://api.themoviedb.org/3/search/movie'
     search_params = {'api_key': TMDB_API_KEY, 'query': movie_title}
 
     search_response = requests.get(search_url, params=search_params)
     search_results = search_response.json()
 
-    # Check if there are search results
     if search_results['results']:
-        # Get the movie ID of the first result
         movie_id = search_results['results'][0]['id']
-
-        # Make a request to TMDb API to get detailed information about the movie
         movie_url = f'https://api.themoviedb.org/3/movie/{movie_id}'
         movie_params = {'api_key': TMDB_API_KEY}
 
         movie_response = requests.get(movie_url, params=movie_params)
         movie_data = movie_response.json()
 
-        # Render the template with the movie data
         return render_template('movie_info.html', movies=movie_data)
     else:
-        # If no search results, handle the error (movie not found)
         abort(404)
 
 @app.route('/add_to_watchlist/<movie_title>', methods=['POST'])
@@ -190,17 +172,25 @@ def add_to_watchlist(movie_title):
         flash('You must be logged in to add movies to your watchlist.', 'error')
         return redirect(url_for('login'))
 
-    # Check if the movie is already in the user's watchlist
     existing_watchlist_item = WatchlistItem.query.filter_by(user_id=session['user_id'], movie_title=movie_title).first()
     if existing_watchlist_item:
         flash('This movie is already in your watchlist.', 'error')
     else:
-        new_watchlist_item = WatchlistItem(user_id=session['user_id'], movie_title=movie_title)
+        movie_poster_url = request.form.get('movie_poster_url')
+        movie_description = request.form.get('movie_description')
+
+        new_watchlist_item = WatchlistItem(
+            user_id=session['user_id'],
+            movie_title=movie_title,
+            movie_poster_url=movie_poster_url,
+            movie_description=movie_description
+        )
         db.session.add(new_watchlist_item)
         db.session.commit()
         flash('Movie added to your watchlist successfully.', 'success')
 
     return redirect(url_for('profile'))
+
 @app.route('/logout')
 def logout():
     session.clear()
