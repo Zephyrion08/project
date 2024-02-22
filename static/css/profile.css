@@ -120,3 +120,39 @@ body {
   font-size: 14px;
   color: #666;
 }
+.remove-button {
+  background-color: #ff6347; /* Coral color */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.remove-button:hover {
+  background-color: #dc143c; /* Crimson color */
+}
+.flash-message {
+  background-color: #f8d7da; /* Light red color */
+  color: #721c24; /* Dark red color */
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #f5c6cb; /* Red border */
+}
+
+.flash-message.success {
+  background-color: #d4edda; /* Light green color */
+  color: #155724; /* Dark green color */
+  border-color: #c3e6cb; /* Green border */
+}
+
+.flash-message.error {
+  background-color: #f8d7da; /* Light red color */
+  color: #721c24; /* Dark red color */
+  border-color: #f5c6cb; /* Red border */
+}
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}

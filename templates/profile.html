@@ -14,10 +14,9 @@
       <header class="header">
         <nav class="menu">
           <ul>
-            <li><a href="#">Watchlist</a></li>
+            <li><a href="/home">Home</a></li>
             <li><a href="#">Stats</a></li>
-            <li><a href="#">Total Edits</a></li>
-            <li><a href="#">Movies</a></li>
+            <li><a href="/home#movies">Movies</a></li>
             <li><a href="#">TV Shows</a></li>
             <li><a href="#">People</a></li>
             <li><a href="#">More</a></li>
@@ -35,27 +34,17 @@
           </div>
           <div class="user-stats">
             <div class="stat">
-              <h3>{{ movies_count }}</h3>
+              <h3>{{ watchlist|length }}</h3>
               <p>Movies</p>
-            </div>
-            <div class="stat">
-              <h3>0%</h3>
-              <p>Recent Discussions</p>
-            </div>
-            <div class="stat">
-              <h3>{{ ratings_count }}</h3>
-              <p>Total Ratings</p>
-            </div>
-            <div class="stat">
-              <h3>0%</h3>
-              <p>Average Movie Score</p>
             </div>
           </div>
         </section>
         <section class="watchlist">
           <h2>Watchlist</h2>
-          {% for item in watchlist %}
-          <div class="movie-card">
+          {% for message in get_flashed_messages() %}
+          <div class="flash-message">{{ message }}</div>
+          {% endfor %} {% for item in watchlist %}
+          <div class="movie-card" id="movie-{{ item.id }}">
             <img
               src="{{ item.movie_poster_url }}"
               alt="{{ item.movie_title }}"
@@ -63,11 +52,39 @@
             <div class="movie-info">
               <div class="movie-title">{{ item.movie_title }}</div>
               <div class="movie-description">{{ item.movie_description }}</div>
+              <div class="movie-details">
+                <p>Genre: {{ item.genre }}</p>
+                <p>Date: {{ item.release_date }}</p>
+                <p>Time: {{ item.movie_time }} m</p>
+              </div>
+              <form
+                action="{{ url_for('remove_from_watchlist', item_id=item.id) }}"
+                method="post"
+                id="remove-form-{{ item.id }}"
+              >
+                <button
+                  class="remove-button"
+                  type="button"
+                  onclick="removeMovie({{ item.id }})"
+                >
+                  Remove
+                </button>
+              </form>
             </div>
           </div>
           {% endfor %}
         </section>
       </main>
     </div>
+    <script>
+      function removeMovie(itemId) {
+        const movieCard = document.getElementById("movie-" + itemId);
+        movieCard.classList.add("fade-out");
+        setTimeout(function () {
+          const removeForm = document.getElementById("remove-form-" + itemId);
+          removeForm.submit();
+        }, 500); // Adjust the timeout to match the transition duration
+      }
+    </script>
   </body>
 </html>

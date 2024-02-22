@@ -451,6 +451,7 @@ header.shadow .logo {
 .box h3 {
   font-size: 0.9rem;
   font-weight: 500;
+  color: #ccc;
 }
 .box span {
   font-size: 14px;

@@ -43,10 +43,7 @@
       </p>
       <p><strong>Overview:</strong> {{ movies['overview'] }}</p>
       <p><strong>Duration:</strong> {{ movies['runtime'] }} minutes</p>
-      <!-- Added runtime -->
       <p><strong>Vote Average:</strong> {{ movies['vote_average'] }} / 10</p>
-      <!-- Added vote average -->
-      <!-- Add more details as needed -->
       {% else %}
       <p>No information available for this movie.</p>
       {% endif %}
@@ -54,6 +51,7 @@
       <form
         action="{{ url_for('add_to_watchlist', movie_title=movies['title']) }}"
         method="POST"
+        onsubmit="return validateForm()"
       >
         <input type="hidden" name="movie_title" value="{{ movies['title'] }}" />
         <input
@@ -66,10 +64,29 @@
           name="movie_poster_url"
           value="https://image.tmdb.org/t/p/w500/{{ movies['poster_path'] }}"
         />
+        <input
+          type="hidden"
+          name="movie_genre"
+          value="{% for genre in movies['genres'] %}{{ genre['name'] }}{% if not loop.last %}, {% endif %}{% endfor %}"
+        />
+        <input
+          type="hidden"
+          name="movie_release_date"
+          value="{{ movies['release_date'] }}"
+        />
+        <input
+          type="hidden"
+          name="movie_time"
+          value="{{ movies['runtime'] }}"
+        />
         <button type="submit" class="btn addToWatchlistBtn">
           Add to Watchlist
         </button>
       </form>
+
+      <p id="feedback" style="display: none; color: green">
+        Movie added to Watchlist!
+      </p>
       <!-- Back to Movies Button -->
       <button class="btn" onclick="window.location.href='/home';">
         Back to Movies
@@ -91,8 +108,18 @@
       <p>&#169; ZenMovies All Right Reserved</p>
     </div>
     <script>
-      function addToWatchlist() {
-        alert("Movie added to Watchlist!");
+      function validateForm() {
+        // Perform validation here
+        var title = document.getElementsByName("movie_title")[0].value;
+        var description =
+          document.getElementsByName("movie_description")[0].value;
+        if (!title || !description) {
+          alert("Please provide a title and description.");
+          return false;
+        }
+        // Display feedback
+        document.getElementById("feedback").style.display = "block";
+        return true;
       }
     </script>
   </body>

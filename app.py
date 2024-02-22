@@ -29,6 +29,10 @@ class WatchlistItem(db.Model):
     movie_title = db.Column(db.String(255), nullable=False)
     movie_poster_url = db.Column(db.String(255), nullable=False)
     movie_description = db.Column(db.Text, nullable=False)
+    genre = db.Column(db.String(100), nullable=False)
+    release_date = db.Column(db.Date, nullable=False)
+    movie_time = db.Column(db.Integer, nullable=False)
+
 
 class CustomModelView(ModelView):
     def is_accessible(self):
@@ -178,16 +182,44 @@ def add_to_watchlist(movie_title):
     else:
         movie_poster_url = request.form.get('movie_poster_url')
         movie_description = request.form.get('movie_description')
+        movie_genre = request.form.get('movie_genre')
+        movie_release_date_str = request.form.get('movie_release_date')  # Corrected typo here
+        movie_time = request.form.get('movie_time')
+
+        try:
+            # Convert release_date string to Python date object
+            release_date = datetime.strptime(movie_release_date_str, '%Y-%m-%d')
+        except ValueError:
+            flash('Invalid release date format.', 'error')
+            return redirect(url_for('profile'))
 
         new_watchlist_item = WatchlistItem(
             user_id=session['user_id'],
             movie_title=movie_title,
             movie_poster_url=movie_poster_url,
-            movie_description=movie_description
+            movie_description=movie_description,
+            genre=movie_genre,
+            release_date=release_date,  # Use the converted date object here
+            movie_time=movie_time
         )
         db.session.add(new_watchlist_item)
         db.session.commit()
         flash('Movie added to your watchlist successfully.', 'success')
+
+    return redirect(url_for('profile'))
+@app.route('/remove_from_watchlist/<int:item_id>', methods=['POST'])
+def remove_from_watchlist(item_id):
+    if 'user_id' not in session:
+        flash('You must be logged in to remove movies from your watchlist.', 'error')
+        return redirect(url_for('login'))
+
+    watchlist_item = WatchlistItem.query.filter_by(user_id=session['user_id'], id=item_id).first()
+    if not watchlist_item:
+        flash('Movie not found in your watchlist.', 'error')
+    else:
+        db.session.delete(watchlist_item)
+        db.session.commit()
+        flash('Movie removed from your watchlist successfully.', 'success')
 
     return redirect(url_for('profile'))
 
